@@ -17,7 +17,7 @@ import com.shdh.service.CatalogService;
 import com.shdh.vo.ResponseCatalog;
 
 @RestController
-@RequestMapping(name = "/catalog-service")
+@RequestMapping("/catalog-service")
 public class CatalogController {
 	Environment env;
 	CatalogService catalogService;
@@ -29,11 +29,11 @@ public class CatalogController {
 	}
 	
 	@GetMapping("/health_check")
-	public String healthCheck() {
+	public String getHealthCheck() {
 		return String.format("It's Working in Catalog Servie on PORT %s",env.getProperty("local.server.port"));
 	}
 	
-	@GetMapping("/users")
+	@GetMapping("/catalogs")
 	public ResponseEntity<List<ResponseCatalog>> getCatalogs(){
 		Iterable<CatalogEntity> userList = catalogService.getAllCatalogs();
 		

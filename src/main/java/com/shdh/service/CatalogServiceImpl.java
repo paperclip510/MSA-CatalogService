@@ -20,7 +20,7 @@ public class CatalogServiceImpl implements CatalogService{
 	public CatalogServiceImpl(CatalogRepository catalogRepository) {
 		this.catalogRepository = catalogRepository;
 	}
-	
+	 
 	
 	@Override
 	public Iterable<CatalogEntity> getAllCatalogs() {

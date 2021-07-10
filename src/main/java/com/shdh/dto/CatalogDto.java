@@ -6,6 +6,11 @@ import lombok.Data;
 
 @Data
 public class CatalogDto implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String productId;
 	private Integer pty;
 	private Integer unitPrice;
