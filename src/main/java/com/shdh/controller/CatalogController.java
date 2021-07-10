@@ -17,32 +17,32 @@ import com.shdh.service.CatalogService;
 import com.shdh.vo.ResponseCatalog;
 
 @RestController
-@RequestMapping("/catalog-service")
+@RequestMapping(value = "/catalog-service/**")
 public class CatalogController {
 	Environment env;
 	CatalogService catalogService;
-	
+
 	@Autowired
 	public CatalogController(Environment env, CatalogService catalogService) {
 		this.env = env;
 		this.catalogService = catalogService;
 	}
-	
+
 	@GetMapping("/health_check")
 	public String getHealthCheck() {
-		return String.format("It's Working in Catalog Servie on PORT %s",env.getProperty("local.server.port"));
+		return String.format("It's Working in Catalog Servie on PORT %s", env.getProperty("local.server.port"));
 	}
-	
+
 	@GetMapping("/catalogs")
-	public ResponseEntity<List<ResponseCatalog>> getCatalogs(){
+	public ResponseEntity<List<ResponseCatalog>> getCatalogs() {
 		Iterable<CatalogEntity> userList = catalogService.getAllCatalogs();
-		
+
 		List<ResponseCatalog> result = new ArrayList<>();
 		userList.forEach(v -> {
 			result.add(new ModelMapper().map(v, ResponseCatalog.class));
 		});
-		
+
 		return ResponseEntity.status(HttpStatus.OK).body(result);
 	}
-	
+
 }
