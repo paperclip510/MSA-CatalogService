@@ -26,10 +26,11 @@ public class KafkaConsumer {
 	}
 	
 	
-	@KafkaListener(topics = "example-catalog-topic")
+	@KafkaListener(topics = "example-catalog-topic", groupId = "consumerGroupId")
 	public void updateQty(String kafkaMessage) {
-		log.info("Kafka Message: -> ;"+kafkaMessage);
+		log.info("Kafka Message: -> "+kafkaMessage);
 		
+		//역직렬화 
 		Map<Object, Object> map = new HashMap<>();
 		ObjectMapper mapper = new ObjectMapper();
 		try {
